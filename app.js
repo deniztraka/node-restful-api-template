@@ -19,6 +19,6 @@ app.get("/",(req,res)=> {
     res.send("onlinee");
 });
 
-app.listen(3000,()=> {
+app.listen(process.env.PORT || 3000,()=> {
     console.log("server is listening from port 3000");
 });
