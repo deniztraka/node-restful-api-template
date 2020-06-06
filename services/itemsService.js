@@ -1,3 +1,5 @@
+import QueryRecordsValidator from "./validators/queryRecordsValidator";
+
 export default class ItemsService {
     constructor(repository) {
         this.repository = repository;
@@ -9,15 +11,8 @@ export default class ItemsService {
      * @param {Object} objectToAdd 
      * @return {Object} added item 
      */
-    async addItem(objectToAdd) {
-        let addedItem = null;
-        try {
-            //handle validation something
-            addedItem = await this.repository.addItem(objectToAdd);
-        } catch (err) {
-            console.log(err);
-        }
-        return addedItem;
+    async addItem(objectToAdd) {        
+        return await this.repository.addItem(objectToAdd);
     }
 
     /**
@@ -27,12 +22,8 @@ export default class ItemsService {
      * @return {Array} array of objects
      */
     async queryItems(queryObj) {
-        let items = [];
-        try {
-            items = await this.repository.queryItems(queryObj);           
-        } catch (err) {
-            console.log(err);
-        }
-        return items;
+        QueryRecordsValidator.validate(queryObj);
+
+        return await this.repository.queryItems(queryObj);
     }
 }
