@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "aaa19f42-3c18-4141-b980-f461d27bdfcf",
+		"name": "node.js-restapi-test-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "queryItems - local",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"startDate\":\"2016-07-06\",\r\n\t\"endDate\":\"2016-07-07\",\r\n\t\"minCount\":2700,\r\n\t\"maxCount\":3000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/records",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"records"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "queryItems - heroku",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"startDate\":\"2016-01-26\",\r\n\t\"endDate\":\"2019-02-02\",\r\n\t\"minCount\":2700,\r\n\t\"maxCount\":3000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://restfull-api-template.herokuapp.com/records",
+					"protocol": "https",
+					"host": [
+						"restfull-api-template",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"records"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "65364655-1af8-4832-9770-cb8f4f0a4399",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "9f42e7b3-3e84-4df4-a98a-1c8d6f3b88ee",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
