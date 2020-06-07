@@ -70,6 +70,8 @@ https://restfull-api-template.herokuapp.com/
 
 **"jest":** unit testing
 
+**"mongodb-memory-server":** used for mock mongodb database for tests
+
 ------------
 ####  Usage
 **Start server:** npm start
