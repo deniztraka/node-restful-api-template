@@ -6,7 +6,7 @@ import GetirRepo from '../repos/getirRepo';
 
 const router = express.Router();
 
-router.post('/items', async (req, res) => {
+router.post('/records', async (req, res) => {
     var repository = new GetirRepo();
     const recordsService = new RecordsService(repository);
     var items = await recordsService.queryItems(req.body);
