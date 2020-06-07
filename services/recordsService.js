@@ -1,6 +1,6 @@
 import QueryRecordsValidator from "./validators/queryRecordsValidator";
 
-export default class ItemsService {
+export default class RecordsService {
     constructor(repository) {
         this.repository = repository;
     }

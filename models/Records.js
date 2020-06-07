@@ -2,11 +2,11 @@
 
 import mongoose from 'mongoose';
 
-const itemSchema = mongoose.Schema({
+const recordsSchema = mongoose.Schema({
     key:String,
     counts: [Number]
 }, {
     timestamps: true
 });
 
-export default mongoose.model('records', itemSchema);
+export default mongoose.model('records', recordsSchema);

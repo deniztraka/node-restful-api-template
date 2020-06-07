@@ -1,35 +1,42 @@
 "use strict";
-import BaseRepository from './baseRepo';
+import Records from '../models/Records';
 
-const items = [{
-        count: [3, 4, 6, 7, 8, 3, 4]
-    },
-    {
-        count: [3, 4, 6, ]
-    },
-    {
-        count: [1, 3, 4, 3]
-    },
-    {
-        count: [2]
-    },
-    {
-        count: [6, 7, 8]
+export default class MockRepository {
+    constructor() {       
     }
-];
-
-export default class TestItemsRepository extends BaseRepository {
-    constructor() {
-        super("");
-    }
-    async getItems() {
-        let alItems = null;
-        try {
-            alItems = await items;
-        } catch (err) {
-            //bullshit
-        }
-
-        return alItems;
+    /**
+     * Queries for records according to given query object
+     * 
+     * @param {Object} objectToAdd 
+     */
+    async queryItems(queryObj) {
+        return await Records.aggregate([{
+                //returns items between provided dates in query object and 
+                "$match": {
+                    "createdAt": {
+                        "$gte": new Date(queryObj.startDate),
+                        "$lt": new Date(queryObj.endDate)
+                    }
+                }
+            }, {
+                //maps sum of resulted counts on totalCount
+                $project: {
+                    totalCount: {
+                        $sum: "$counts"
+                    },
+                    createdAt: "$createdAt",
+                    key: "$key"
+                }
+            },
+            {
+                //filters resulted items between provided totalCount
+                "$match": {
+                    "totalCount": {
+                        "$gte": queryObj.minCount,
+                        "$lt": queryObj.maxCount
+                    }
+                }
+            }
+        ]);
     }
 }

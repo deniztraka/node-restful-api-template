@@ -32,8 +32,8 @@ export default class QueryRecordsValidator {
             validationErrorMessages.push(`maxCount is not a number: ${queryObject.maxCount}`);
         }
 
-        if(validationErrorMessages.length > 0){
+        if (validationErrorMessages.length > 0) {
             throw new ValidationError('Request payload is not valid.', validationErrorMessages);
-          }
+        }
     }
 }

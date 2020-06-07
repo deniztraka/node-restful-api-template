@@ -1,13 +1,12 @@
 "use strict";
-import BaseRepository from './baseRepo';
 import mongoose from 'mongoose';
-import Item from '../models/Item';
+import Records from '../models/Records';
 
-export default class GetirRepo extends BaseRepository {
+
+export default class GetirRepo {
     constructor() {
-        super(process.env.GETIR_CONNSTRING);
         mongoose.connect(
-            this.connectionString, {
+            process.env.GETIR_CONNSTRING, {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             }
@@ -19,7 +18,7 @@ export default class GetirRepo extends BaseRepository {
      * @param {Object} objectToAdd 
      */
     async queryItems(queryObj) {
-        return await Item.aggregate([{
+        return await Records.aggregate([{
             //returns items between provided dates in query object and 
             "$match": {
                 "createdAt": {

@@ -12,8 +12,8 @@ const app = express();
 app.use(bodyParser.json());
 
 //routes
-import itemsRoute from './routes/itemsRoute';
-app.use('/', itemsRoute);
+import recordsRoute from './routes/recordsRoute';
+app.use('/', recordsRoute);
 
 //error handling middleware
 app.use((err, req, res, next) => {    
