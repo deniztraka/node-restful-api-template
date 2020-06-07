@@ -77,3 +77,5 @@ https://restfull-api-template.herokuapp.com/
 **Start server:** npm start
 
 **Run tests:** npm test
+
+You can also find test postman collection in /assets/postman folder.
