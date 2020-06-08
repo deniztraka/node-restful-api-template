@@ -19,31 +19,33 @@ export default class GetirRepo {
      */
     async queryItems(queryObj) {
         return await Records.aggregate([{
-            //returns items between provided dates in query object and 
-            "$match": {
-                "createdAt": {
-                    "$gte": new Date(queryObj.startDate),
-                    "$lt": new Date(queryObj.endDate)
+                //returns items between provided dates in query object and 
+                "$match": {
+                    "createdAt": {
+                        "$gte": new Date(queryObj.startDate),
+                        "$lt": new Date(queryObj.endDate)
+                    }
+                }
+            }, {
+                //maps sum of resulted counts on totalCount
+                $project: {
+                    totalCount: {
+                        $sum: "$counts"
+                    },
+                    createdAt: "$createdAt",
+                    key: "$key",
+                    _id: false
+                }
+            },
+            {
+                //filters resulted items between provided totalCount
+                "$match": {
+                    "totalCount": {
+                        "$gte": queryObj.minCount,
+                        "$lt": queryObj.maxCount
+                    }
                 }
             }
-        }, {
-            //maps sum of resulted counts on totalCount
-            $project: {
-                totalCount: {
-                    $sum: "$counts"
-                },
-                createdAt: "$createdAt",
-                key: "$key"
-            }
-        },
-        {
-            //filters resulted items between provided totalCount
-            "$match": {
-                "totalCount": {
-                    "$gte": queryObj.minCount,
-                    "$lt": queryObj.maxCount
-                }
-            }
-        }]);
+        ]);
     }
 }
