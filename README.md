@@ -26,8 +26,7 @@ https://restfull-api-template.herokuapp.com/
         "code": 200,
         "msg": "Success",
         "records": [
-            {
-                "_id": "58adc57a1f84e37c19df0a07",
+            {                
                 "totalCount": 2700,
                 "createdAt": "2016-07-06T06:54:46.169Z",
                 "key": "xqT9N0XwJ4qwU0GQ"
